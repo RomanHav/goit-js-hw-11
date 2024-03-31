@@ -7,7 +7,9 @@
     <title>Vanilla App Template</title>
     
     <script type="module" crossorigin src="/vanilla-app-template/commonHelpers.js"></script>
-    <link rel="stylesheet" href="/vanilla-app-template/assets/index-10c40100.css">
+    <link rel="modulepreload" crossorigin href="/vanilla-app-template/assets/vendor-5b791d57.js">
+    <link rel="stylesheet" href="/vanilla-app-template/assets/vendor-cf6910df.css">
+    <link rel="stylesheet" href="/vanilla-app-template/assets/index-1ecdab6b.css">
   </head>
   <body>
     <form class="form">
@@ -19,6 +21,7 @@
       />
       <button class="button" type="submit">Search</button>
     </form>
+    <span class="loader"></span>
     <ul class="gallery"></ul>
     
   </body>
