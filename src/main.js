@@ -14,8 +14,12 @@ function renderImages(evt) {
   const searchWord = request();
   if (searchWord.length === 0) {
     iziToast.error({
+      theme: 'dark',
       message: 'The field must be fullfield',
+      messageColor: '#FAFAFB',
+      backgroundColor: '#EF4040',
       position: 'topRight',
+      progressBarColor: '#B51B1B',
     });
   } else {
     gallery.innerHTML = '';
