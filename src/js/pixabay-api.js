@@ -15,5 +15,7 @@ export function fetchInfo(searchWord) {
       }
       return response.json();
     })
-    .then(json => console.log(json));
+    .then(json => {
+      return json;
+    });
 }

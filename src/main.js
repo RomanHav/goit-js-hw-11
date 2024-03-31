@@ -1,25 +1,29 @@
-import { fetchInfo } from './js/pixabay-api';
+// Описаний у документації
+import iziToast from 'izitoast';
+// Додатковий імпорт стилів
+import 'izitoast/dist/css/iziToast.min.css';
+import { request, markup } from './js/render-functions';
 // import { button, } from './js/render-functions';
 
 const input = document.querySelector('.search');
 const button = document.querySelector('.button');
+const gallery = document.querySelector('.gallery');
 
-function request() {
-  const inputValue = input.value.trim();
-  return inputValue;
-}
-
-function renderImages() {
+function renderImages(evt) {
+  evt.preventDefault();
   const searchWord = request();
-  fetchInfo(searchWord)
-    .then(data => {
-      // Обрабатываем результаты запроса и отображаем изображения на странице
-      console.log('Результаты запроса:', data);
-      // Здесь вы можете добавить код для отображения изображений на странице
-    })
-    .catch(error => {
-      console.error('Ошибка при выполнении запроса:', error);
+  if (searchWord.length === 0) {
+    iziToast.error({
+      message: 'The field must be fullfield',
+      position: 'topRight',
     });
+  } else {
+    gallery.innerHTML = '';
+
+    markup();
+
+    input.value = '';
+  }
 }
 
 input.addEventListener('input', request);
