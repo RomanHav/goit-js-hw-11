@@ -18,9 +18,8 @@ export function markup() {
   const gallery = document.querySelector('.gallery');
   const loader = document.querySelector('.loader');
   const searchWord = request();
-
+  loader.style.display = 'block';
   fetchInfo(searchWord).then(data => {
-    loader.style.display = 'block';
     if (data.hits.length === 0) {
       loader.style.display = 'none';
       iziToast.error({
@@ -33,10 +32,9 @@ export function markup() {
         progressBarColor: '#B51B1B',
       });
     } else {
-      setTimeout(() => {
-        const images = data.hits
-          .map(element => {
-            return `<li class="gallery-item">
+      const images = data.hits
+        .map(element => {
+          return `<li class="gallery-item">
         <a class="image-link" href="${element.largeImageURL}">
           <img class="image" src="${element.webformatURL}" alt="${element.tags}" />
         </a>
@@ -59,16 +57,15 @@ export function markup() {
           </li>
         </ul>
       </li>`;
-          })
-          .join('');
-        loader.style.display = 'none';
-        gallery.insertAdjacentHTML('beforeend', images);
-        let largeGallery = new SimpleLightbox('.gallery a', {
-          captionsData: 'alt',
-          captionsDelay: 250,
-        });
-        largeGallery.refresh();
-      }, 1000);
+        })
+        .join('');
+      loader.style.display = 'none';
+      gallery.insertAdjacentHTML('beforeend', images);
+      let largeGallery = new SimpleLightbox('.gallery a', {
+        captionsData: 'alt',
+        captionsDelay: 250,
+      });
+      largeGallery.refresh();
     }
   });
 }
